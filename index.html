@@ -1,0 +1,99 @@
+<html>
+	<head>
+		
+
+	</head>
+	<body>
+	<h1>Talk</h1>
+	<button id=start onclick=startVoice(event)>Start</button>
+	<p id=status>Status</p>
+	<p id=interim>Interim</p>
+	<p id=final>Final</p>
+	</body>
+	<script>var finalTranscript = '';
+	var recognising = false;
+	var ignoreEnd;
+	var startTimestamp;
+	var status = document.querySelector('#status').textContent;
+
+	if(!('webkitSpeechRecognition' in window)){
+		document.innerHTML = "Please use Chrome, it only works on that. *put better message"
+	} else {
+		var recognition = new webkitSpeechRecognition();
+		recognition.continuous = true;
+		recognition.interimResults = true;
+		
+		//When recognition starts
+		recognition.onstart = function(){
+			recognising = true;
+			status = "Speak now, it is recognising"
+		};
+		
+		//If an error occurs, catches type of error
+		recognition.onerror = function(event){
+			switch(event.error){
+				case 'no-speech': //can't hear someone
+					status = 'No speech detected';
+					ignoreEnd = true;
+					break;
+				case 'audio-capture': //no mic in PC
+					status = 'No microphone detected';
+					ignoreEnd = true;
+					break;
+				case 'not-allowed':
+					if(event.timeStamp - startTimestamp < 100){
+						status = 'Information is blocked';
+					} else {
+						status = 'Information is denied';
+					}
+					ignoreEnd = true;
+					break;
+				}
+		};
+		
+		//When recognition ends
+		recognition.onend = function(){
+			recognising = false;
+			if(ignoreEnd = true){
+				return;
+			}
+			if (finalTranscript = ''){
+				status = "Started";
+				return;
+			}
+		};
+		
+		//During recognition
+		recognition.onresult = function(event){
+			var interimResult = '';
+			if(typeof(event.results)=='undefined'){
+				recognition.onend = null;
+				recognition.stop();
+				
+				return;
+			}
+			for (var i = event.resultIndex; i < event.results.length; ++i) {
+				if (event.results[i].isFinal) {
+					finalTranscript += event.results[i][0].transcript;
+			    } else {
+			    	interimTranscript += event.results[i][0].transcript;
+			    }
+			}
+			
+			finalTranscript = capitalize(finalTranscript);
+			document.querySelector('#interim').textContent = interimTranscript;
+			document.querySelector('#final').textContent = finalTranscript;
+		};
+	}
+
+	function startVoice(event){
+		if(recognising == true){
+			recognition.stop();
+			return;
+		}
+		finalTranscript = '';
+		recognition.start();
+		ignoreEnd = false;
+		startTimestamp = event.timestamp;
+	}</script>
+</html>
