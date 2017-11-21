@@ -1,0 +1,47 @@
+<html>
+<body>
+<h1>Text test</h1>
+<button id=start>Start</button>
+<p id=status></p>
+<p id=output>Output: </p>
+</body>
+<script>
+
+/*
+ * To do- 
+  check for browser
+  
+ */
+var sr = new webkitSpeechRecognition(),
+output = document.querySelector('#output'),
+status = document.querySelector('#status'),
+allText;
+ 
+sr.continuous = true;
+sr.interimResults = true;
+
+document.querySelector('#start').addEventListener('click', startSpeech);
+
+function startSpeech(event){
+	sr.start();
+	console.log("ready");
+
+	sr.onaudiostart = function(){
+		console.log('Capturing');
+	};
+	
+	sr.onresult = function(event){
+		var interim = '';
+		for(var i = event.resultIndex; i < event.results.length; i++){
+			interim += event.results[i][0].transcript;
+		}
+		console.log(interim);
+		allText =+ interim;
+		output.textContent = interim;
+		//send text to server
+		//add full stop after a interval
+	}
+}
+
+</script>
+</html>
