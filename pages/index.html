@@ -15,7 +15,8 @@
 var sr = new webkitSpeechRecognition(),
 output = document.querySelector('#output'),
 status = document.querySelector('#status'),
-allText;
+allText,
+ws = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/");
  
 sr.continuous = true;
 sr.interimResults = true;
@@ -34,8 +35,9 @@ function startSpeech(event){
 		var interim = '';
 		for(var i = event.resultIndex; i < event.results.length; i++){
 			interim += event.results[i][0].transcript;
+			console.log(event.results[i][0].confidence);
 		}
-		console.log(interim);
+		ws.send(interim)
 		allText =+ interim;
 		output.textContent = interim;
 		//send text to server
