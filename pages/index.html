@@ -5,6 +5,7 @@
 <p id=status></p>
 <p id=output>Output: </p>
 </body>
+<script src="/socket.io/socket.io.js"></script>
 <script>
 
 /*
@@ -16,7 +17,7 @@ var sr = new webkitSpeechRecognition(),
 output = document.querySelector('#output'),
 status = document.querySelector('#status'),
 allText,
-ws = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/");
+socket = io();
  
 sr.continuous = true;
 sr.interimResults = true;
@@ -35,9 +36,9 @@ function startSpeech(event){
 		var interim = '';
 		for(var i = event.resultIndex; i < event.results.length; i++){
 			interim += event.results[i][0].transcript;
-			console.log(event.results[i][0].confidence);
+			console.log(event.results[i][0].transcript);
 		}
-		ws.send(interim)
+		//ws.send(interim)
 		allText =+ interim;
 		output.textContent = interim;
 		//send text to server

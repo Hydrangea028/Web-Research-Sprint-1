@@ -1,29 +1,29 @@
-var express = require("express");
-var http = require("http");
-var websocket = require("ws");
-
-var server = http.createServer();
-var wss = new wsserver({server:server});
+/*var express = require("express");
+var http = require("http").Server(app);
 var app = express();
-
-server.on('request', app);
-
-function broadcastWS(message){
-	wss.clients.forEach(function(client){
-		if(client.readyState === client.OPEN){
-			client.send(message);
-		}
-	})
-}
-
-function respondWS(ws){
-	ws.on('message', broadcastWS);
-}
+var io = require("socket.io")(http);
 
 app.get('/', function(req,res){
 	res.sendFile('pages/index.html', {root:__dirname});
+});
+
+io.on('connection', function(socket){
+	console.log('User connected.');
+});
+
+app.listen(8080);*/
+
+var express = require("express");
+var app = express();
+var http = require("http").Server(app);
+var socket = require("socket.io");
+
+app.get('/', function(req,res){
+	res.sendFile(__dirname+"/pages/index.html");
 })
 
-wss.on('connection', respondWS);
+var io = socket.listen(app.listen(8080));
 
-app.listen(8080);
+io.on('connection', function(socket){
+	console.log("connection on", socket.id);
+})
