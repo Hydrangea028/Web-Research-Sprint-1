@@ -1,49 +1,55 @@
 <html>
 <body>
 <h1>Text test</h1>
-<button id=start>Start</button>
+<button id=start onclick=startSpeech(event)>Start/Stop</button>
+<button id=allText onclick=showAllText()>Show all text</button>
 <p id=status></p>
 <p id=output>Output: </p>
+<p id=final></p>
 </body>
-<script src="/socket.io/socket.io.js"></script>
 <script>
 
-/*
- * To do- 
-  check for browser
-  
- */
 var sr = new webkitSpeechRecognition(),
 output = document.querySelector('#output'),
 status = document.querySelector('#status'),
-allText,
-socket = io();
+allText = '',
+started = false;
  
 sr.continuous = true;
 sr.interimResults = true;
 
-document.querySelector('#start').addEventListener('click', startSpeech);
-
 function startSpeech(event){
-	sr.start();
-	console.log("ready");
-
-	sr.onaudiostart = function(){
-		console.log('Capturing');
-	};
-	
-	sr.onresult = function(event){
-		var interim = '';
-		for(var i = event.resultIndex; i < event.results.length; i++){
-			interim += event.results[i][0].transcript;
-			console.log(event.results[i][0].transcript);
+		if(started){
+			sr.stop();
+			started = false;
+		} else {
+			sr.start();
+			sr.onstart = function(){
+				started = true
+			}
+			sr.onaudiostart = function(){
+				status.textContent = 'Capturing';
+			};
+			sr.onresult = function(event){
+				var interim = '';
+				
+				for(var i = event.resultIndex; i < event.results.length; i++){
+					if (event.results[i].isFinal){
+						allText += event.results[i][0].transcript + ".";
+					} else {
+						interim += event.results[i][0].transcript;
+					}
+				}
+				output.textContent = interim.substring(interim.length - 20, interim.length);
+			}
+			sr.onend = function(){
+				started = false;
+			}
 		}
-		//ws.send(interim)
-		allText =+ interim;
-		output.textContent = interim;
-		//send text to server
-		//add full stop after a interval
 	}
+	
+function showAllText(){
+	document.querySelector('#final').textContent = allText;
 }
 
 </script>
