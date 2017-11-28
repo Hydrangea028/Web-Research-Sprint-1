@@ -4,7 +4,10 @@
 <button id=start onclick=startSpeech(event)>Start/Stop</button>
 <button id=allText onclick=showAllText()>Show all text</button>
 <p id=status></p>
-<p id=output>Output: </p>
+<div id=outputContainer>
+	<div id=line2></div>
+	<div id=line1></div>
+</div>
 <p id=final></p>
 </body>
 <script>
@@ -19,37 +22,48 @@ sr.continuous = true;
 sr.interimResults = true;
 
 function startSpeech(event){
-		if(started){
-			sr.stop();
-			started = false;
-		} else {
-			sr.start();
-			sr.onstart = function(){
-				started = true
-			}
-			sr.onaudiostart = function(){
-				status.textContent = 'Capturing';
-			};
-			sr.onresult = function(event){
-				var interim = '';
-				
-				for(var i = event.resultIndex; i < event.results.length; i++){
-					if (event.results[i].isFinal){
-						allText += event.results[i][0].transcript + ".";
-					} else {
-						interim += event.results[i][0].transcript;
-					}
+		
+	if(started){
+		sr.stop();
+		started = false;
+	} else {
+		sr.start();
+		sr.onstart = function(){
+			started = true
+		}
+		sr.onaudiostart = function(){
+			status.textContent = 'Capturing';
+		};
+		sr.onresult = function(event){
+			var interim = '';
+			
+			for(var i = event.resultIndex; i < event.results.length; i++){
+				if (event.results[i].isFinal){
+					allText += event.results[i][0].transcript + "/n";
+				} else {
+					interim += event.results[i][0].transcript;
 				}
-				output.textContent = interim.substring(interim.length - 20, interim.length);
 			}
-			sr.onend = function(){
-				started = false;
-			}
+			createSubtitle(interim);
+			//output.textContent = interim.substring(interim.length - 20, interim.length);
+		}
+		sr.onend = function(){
+			started = false;
 		}
 	}
+}
 	
-function showAllText(){
-	document.querySelector('#final').textContent = allText;
+var line1text = '', line2text = '', line1 = document.querySelector('#line1'), line2 = document.querySelector('#line2');
+function createSubtitle(interim){
+	var lastWord = interim.split(" ").splice(-1);
+	
+	
+	if (line1.textContent.length > 40){
+		line2.textContent = line1.textContent;
+		line1.textContent = '' + lastWord;
+	} else {
+		line1.textContent += " " + lastWord;
+	}
 }
 
 </script>
