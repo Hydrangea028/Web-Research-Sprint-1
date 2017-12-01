@@ -1,70 +1,23 @@
 <html>
-<body>
-<h1>Text test</h1>
-<button id=start onclick=startSpeech(event)>Start/Stop</button>
-<button id=allText onclick=showAllText()>Show all text</button>
-<p id=status></p>
-<div id=outputContainer>
-	<div id=line2></div>
-	<div id=line1></div>
-</div>
-<p id=final></p>
-</body>
-<script>
-
-var sr = new webkitSpeechRecognition(),
-output = document.querySelector('#output'),
-status = document.querySelector('#status'),
-allText = '',
-started = false;
- 
-sr.continuous = true;
-sr.interimResults = true;
-
-function startSpeech(event){
-		
-	if(started){
-		sr.stop();
-		started = false;
-	} else {
-		sr.start();
-		sr.onstart = function(){
-			started = true
-		}
-		sr.onaudiostart = function(){
-			status.textContent = 'Capturing';
-		};
-		sr.onresult = function(event){
-			var interim = '';
-			
-			for(var i = event.resultIndex; i < event.results.length; i++){
-				if (event.results[i].isFinal){
-					allText += event.results[i][0].transcript + "/n";
-				} else {
-					interim += event.results[i][0].transcript;
-				}
-			}
-			createSubtitle(interim);
-			//output.textContent = interim.substring(interim.length - 20, interim.length);
-		}
-		sr.onend = function(){
-			started = false;
-		}
-	}
-}
-	
-var line1text = '', line2text = '', line1 = document.querySelector('#line1'), line2 = document.querySelector('#line2');
-function createSubtitle(interim){
-	var lastWord = interim.split(" ").splice(-1);
-	
-	
-	if (line1.textContent.length > 40){
-		line2.textContent = line1.textContent;
-		line1.textContent = '' + lastWord;
-	} else {
-		line1.textContent += " " + lastWord;
-	}
-}
-
-</script>
+	<head>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<header>
+			<h1>Speech to text</h1>
+		</header>
+		<div id=main>
+			<p>To start transmitting the transcript, press the start/stop button. If this is your first time, then please accept the request for your browser to access your microphone. 
+			<button id=start>Start/Stop</button>
+			<button id=final>Show all text</button>
+			<div id=subtitle>
+				<button id=addFont>+</button>
+				<button id=lessFont>-</button>
+				<button id=foreColour>foreColour</button>
+				<button id=backColour>backColour</button>
+				<div id=line></div>
+			</div>
+		</div>
+	</body>
+	<script src=client.js></script>
 </html>

@@ -1,13 +1,11 @@
 {
-  "name": "text",
+  "name": "speechtotext",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "dependencies": {
     "express": "^4.16.2",
-    "socket.io": "^2.0.4",
-    "socketio": "^1.0.0",
-    "ws": "^3.3.2"
+    "socket.io": "^2.0.4"
   },
   "devDependencies": {},
   "scripts": {

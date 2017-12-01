@@ -1,0 +1,16 @@
+#subtitle{
+	border: 2px grey solid;
+	background-color: black;
+	color: white;
+	text-align: centre;
+	width:60%;
+	position: fixed;
+}
+
+#subtitle button{
+
+}
+
+body{
+	font-family: "Ubuntu", "Arial",  sans-serif;
+}

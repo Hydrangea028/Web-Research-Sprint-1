@@ -1,9 +1,11 @@
-var express = require("express");
-var app = express();
-var http = require("http").Server(app);
+'use strict';
+const	express = require('express'),
+		app = express(),
+		server = require('http').Server(app),
+		io = require('socket.io')(server),
+		port = process.env.PORT || 8080;
 
-app.get('/', function(req,res){
-	res.sendFile(__dirname+"/pages/index.html");
-})
+app.use(express.static(__dirname + '/pages'));
 
-app.listen(8080);
+server.listen(port);
+console.log("On port " + port);
