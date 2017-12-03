@@ -3,12 +3,16 @@
 	background-color: black;
 	color: white;
 	text-align: centre;
-	width:60%;
+	width:80%;
 	position: fixed;
 }
 
-#subtitle button{
+#settings{
+	border-bottom: 2px grey solid;
+}
 
+#line{
+	font-size: 2em;
 }
 
 body{

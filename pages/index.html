@@ -1,23 +1,53 @@
 <html>
 	<head>
+		<title>Speech to text for lectures</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 		<header>
-			<h1>Speech to text</h1>
+			<h1>Speech to text for lectures</h1>
 		</header>
 		<div id=main>
-			<p>To start transmitting the transcript, press the start/stop button. If this is your first time, then please accept the request for your browser to access your microphone. 
-			<button id=start>Start/Stop</button>
-			<button id=final>Show all text</button>
+			<p>To start transmitting speech, press the start/stop button. If this is your first time, then please accept the request for your browser to access your microphone. 
+			<p>
+				<button id=start>Start/Stop</button>
+				<button id=final>Show all text</button>
+			</p>
 			<div id=subtitle>
-				<button id=addFont>+</button>
-				<button id=lessFont>-</button>
-				<button id=foreColour>foreColour</button>
-				<button id=backColour>backColour</button>
+				<div id=settings>
+					<label for=addFont>Font size</label>
+					<button id=addFont>+</button>
+					<button id=lessFont>-</button>
+					<label for=foreColour>Text color</label>
+					<select id=foreColour>
+						<option value=red>Red</option>
+						<option value=orange>Orange</option>
+						<option value=yellow>Yellow</option>
+						<option value=lime>Green</option>
+						<option value=blue>Blue</option>
+						<option value=indigo>Indigo</option>
+						<option value=violet>Violet</option>
+						<option value=black>Black</option>
+						<option value=white selected>White</option>
+					</select>
+					<label for=backColour>Back color</label>
+					<select id=backColour>
+						<option value=red>Red</option>
+						<option value=orange>Orange</option>
+						<option value=yellow>Yellow</option>
+						<option value=lime>Green</option>
+						<option value=blue>Blue</option>
+						<option value=indigo>Indigo</option>
+						<option value=violet>Violet</option>
+						<option value=black selected>Black</option>
+						<option value=white>White</option>
+					</select>
+				</div>
 				<div id=line></div>
 			</div>
 		</div>
 	</body>
+	<script src="/socket.io/socket.io.js"></script>
 	<script src=client.js></script>
+	
 </html>
