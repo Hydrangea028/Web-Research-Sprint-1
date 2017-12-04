@@ -13,7 +13,7 @@ var	addFont = 		document.querySelector('#addFont'),
 	final = 		document.querySelector('#final');
 
 
-var sr = 			speechRecognition || webkitSpeechRecognition(),
+var sr = 			speechRecognition || webkitSpeechRecognition,
 	finalResult = 	'',
 	started = 		false;
 
