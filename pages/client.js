@@ -22,6 +22,9 @@ var sr = 			new webkitSpeechRecognition(),
 sr.continuous = true; //speech input is continuous, no need to start it all the time
 sr.interimResults = true; //enables interim, on the fly, results
 
+document.querySelector('#test').addEventListener('click', function(){
+	socket.emit('send text', "Something to send");
+});
 final.addEventListener('click', finalTranscript);
 start.addEventListener('click', startSpeech);
 
