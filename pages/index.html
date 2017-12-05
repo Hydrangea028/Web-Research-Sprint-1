@@ -8,12 +8,19 @@
 			<h1>Speech to text for lectures</h1>
 		</header>
 		<div id=main>
-			<p>To start transmitting speech, press the start/stop button. If this is your first time, then please accept the request for your browser to access your microphone. 
+			<section id=instruction>
+				<h2>How to use</h2>
+				<p>This is a live captioning program for use in lectures or conferences. If you are listening to a speech, then captions should automatically appear on the screen. Otherwise, the presenter should press the "Start/Stop" button to commence the captioning.</p>
+				<p>To view the entire transcript of the current speech, press the "Show all text button". 
+			</section>
+			<section id=present>
 			<p>
-				<button id=start>Start/Stop</button>
-				<button id=final>Show all text</button>
-				<button id=test>Test</button>
+				<button id=start>Start/Stop</button><label for=start>Only press if you are presenting!</label>
 			</p>
+				<p><button id=final>Show all text</button></p>
+				<p><button id=test>Test</button></p>
+			
+			</section>
 			<div id=subtitle>
 				<div id=settings>
 					<label for=addFont>Font size</label>
@@ -44,7 +51,7 @@
 						<option value=white>White</option>
 					</select>
 				</div>
-				<div id=line></div>
+				<div id=line>Subtitles appear here when the host starts talking.</div>
 			</div>
 		</div>
 	</body>

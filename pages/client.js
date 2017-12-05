@@ -72,11 +72,7 @@ function startSpeech(event){
 					interimResult += event.results[i][0].transcript;
 				};
 			};
-			
-			/*send that to server
-			socket.emit('subtitles', {
-				text:interimResult
-			});*/
+
 			socket.emit('send text', interimResult);
 		};
 	};
