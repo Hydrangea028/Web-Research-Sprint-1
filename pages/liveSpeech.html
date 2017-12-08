@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <!--SEO-->
+    <title id="homeTitle">Speech to text for lectures</title>
+
+    <meta name="description" content="">
+    <!--end SEO-->
+
+    <link href="mainStyle.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+
+      <div id="container">
+
+        <div id="header">
+          <h1>Speech to text for lectures</h1>
+        </div>
+
+        <div id="content">
+
+          <div id="main">
+      			<section id="instruction">
+      				<h2><b><u>How to use</u></b></h2>
+      				<p>This is a live captioning program for use in lectures or conferences. If you are listening to a speech, then captions should automatically appear on the screen. Otherwise, the presenter should press the "<b>Start/Stop</b>" button to commence the captioning.</p>
+      				<p>To view the entire transcript of the current speech, press the "<b>Show all text button</b>".
+      			</section>
+
+      			<section id="present">
+      				<button id="start">Start/Stop (Only press if you are presenting!)</button>
+      				<button id="final">Show all text</button>
+      				<!--<button id="test">Test</button>-->
+      			</section>
+
+      			<div id="subtitle">
+      				<div id="settings">
+      					<label for="addFont">Font size</label>
+      					<button id="addFont">+</button>
+      					<button id="lessFont">-</button>
+      					<label for="foreColour">Text color</label>
+      					<select id="foreColour">
+      						<option value="red">Red</option>
+      						<option value="orange">Orange</option>
+      						<option value="yellow">Yellow</option>
+      						<option value="lime">Green</option>
+      						<option value="blue">Blue</option>
+      						<option value="indigo">Indigo</option>
+      						<option value="violet">Violet</option>
+      						<option value="black">Black</option>
+      						<option value="white" selected>White</option>
+      					</select>
+      					<label for="backColour">Back color</label>
+      					<select id="backColour">
+      						<option value="red">Red</option>
+      						<option value="orange">Orange</option>
+      						<option value="yellow">Yellow</option>
+      						<option value="lime">Green</option>
+      						<option value="blue">Blue</option>
+      						<option value="indigo">Indigo</option>
+      						<option value="violet">Violet</option>
+      						<option value="black" selected>Black</option>
+      						<option value="white">White</option>
+      					</select>
+      				</div>
+      				<div id="line">Subtitles appear here when the host starts talking.</div>
+      			</div>
+      		</div>
+
+        </div>
+
+      </div>
+
+
+      <!--<div id="footer">
+        <p>Website created by Stewart Tyler James, Lillie Katie Hogg and Ting Wei Wong
+        </p>
+      </div>-->
+
+  </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src=client.js></script>
+
+</html>
