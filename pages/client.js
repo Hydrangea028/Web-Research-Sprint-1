@@ -22,9 +22,6 @@ var sr = 			new webkitSpeechRecognition(),
 sr.continuous = true; //speech input is continuous, no need to start it all the time
 sr.interimResults = true; //enables interim, on the fly, results
 
-document.querySelector('#test').addEventListener('click', function(){
-	socket.emit('send text', "Something to send");
-});
 final.addEventListener('click', finalTranscript);
 start.addEventListener('click', startSpeech);
 
@@ -91,10 +88,12 @@ socket.on('text', function(data){
 addFont.addEventListener('click', function(){
 	var currentFontSize = parseInt(window.getComputedStyle(line, null).getPropertyValue('font-size'));
 	line.style.fontSize = currentFontSize + 2 ;
+	console.log("Doin")
 });
 
 //reduce font size  in subtitle box
 lessFont.addEventListener('click', function(){
+	console.log("Ip")
 	var currentFontSize = parseInt(window.getComputedStyle(line, null).getPropertyValue('font-size'));
 	line.style.fontSize = currentFontSize - 2 ;
 });
@@ -109,6 +108,7 @@ backColour.addEventListener('change', function(){
 	line.style.backgroundColor = backColour.options[backColour.selectedIndex].text;
 });
 
+/*		no moving subtitles for now... :/
 //move subtitle box when user clicks on subtitles
 line.addEventListener('mousedown', function(){
 	window.addEventListener('mousemove', moveSubtitles);
@@ -123,4 +123,4 @@ function moveSubtitles(){
 	subtitle.style.position = 'absolute';
 	subtitle.style.top = event.clientY + 'px';
 	subtitle.style.left = event.clientX + 'px';
-}
+}*/

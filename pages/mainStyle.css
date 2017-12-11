@@ -1,105 +1,99 @@
 html, body {
-  margin: 0;
-  height: 100%;
-  background-color: #f0f8ff;
-	font-family: "Ubuntu", "Arial",  sans-serif;
+	margin: 0;
 	background-color: #f0f8ff;
+	font-family: "Ubuntu", "Arial",  sans-serif;
 }
 
-#container {
-  min-height: 100%;
-}
-
-#header {
-  margin: 0px;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  text-align: center;
-  background-color: #004080;
-  color: white;
-  border: 2px solid #004080;
+header {
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+	text-align: center;
+	background-color: #004080;
+	color: white;
+	border: 2px solid #004080;
 }
 
 #content {
-  margin-top: 10px;
+	margin-top: 0.7em;
 }
 
 #instruction {
-  margin: 1% 6% 1% 6%;
-  padding: 10px 50px;
-  border: 1px solid #d1d1e0;
-  border-radius: 10px;
-  background-color: #d1d1e0;
+	margin: 1% 6% 1% 6%;
+	padding: 0.7em 3.2em;
+	border: 1px solid #d1d1e0;
+	border-radius: 0.7em;
+	background-color: #d1d1e0;
 }
 
 #instruction p{
-  margin-bottom: 2%;
+	margin-bottom: 2%;
 }
 
 #instruction h2{
-  text-align: center;
+	text-align: center;
 }
 
-/** Start - Buttons Design**/
 #present{
-  padding-bottom: 15px;
-  text-align: center;
+	padding-bottom: 15px;
+	text-align: center;
 }
 
 #present button{
-  font-family: "Ubuntu", "Arial",  sans-serif;
-  font-size: 16px;
-  border-radius: 20px;
-  color: white;
-  padding: 15px 32px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  display: block;
-  width: 90.5%;
-  margin: 0.5% 5%;
+	font-family: "Ubuntu", "Arial",  sans-serif;
+	font-size: 16px;
+	border-radius: 20px;
+	color: white;
+	padding: 15px 32px;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	display: block;
+	width: 90.5%;
+	margin: 0.5% 5%;
 }
 
 #start{
-  background-color: #008CBA;
-  border: 1px solid #008CBA;
+	background-color: #008CBA;
+	border: 1px solid #008CBA;
 }
 
 #start:hover{
-  background-color: white;
-  border-color: #008CBA;
-  color: black;
+	background-color: white;
+	border-color: #008CBA;
+	color: black;
 }
 
 #final{
-  background-color: #4CAF50;
-  border: 1px solid #4CAF50;
+	background-color: #4CAF50;
+	border: 1px solid #4CAF50;
 }
 
 #final:hover{
-  background-color: white;
-  border-color: #4CAF50;
-  color: black;
+	background-color: white;
+	border-color: #4CAF50;
+	color: black;
 }
 
-#test{
-  background-color: #ff9933;
-  border: 1px solid #ff9933;
+header, #instruction, #present{
+	z-index: 30;
 }
 
-#test:hover{
-  background-color: white;
-  border-color: #ff9933;
-  color: black;
+#block{
+	position: fixed;
+	width:100%;
+	z-index: 20;
+	background-color: #f0f8ff;
+	bottom: 8.5em;
+	height: 10em;
 }
-/** End - Buttons Design **/
 
-/** Start - Text Box **/
 #subtitle{
-  margin: 1% 6%;
-  padding: 25px 20px;
+	z-index:10;
+	bottom:1em;
+	margin: 1% 6%;
+	padding: 0.2em 0.2em;
 	border: 2px black solid;
-  border-radius: 5px;
+	border-radius: 3px;
 	background-color: black;
 	color: white;
 	width: 80%;
@@ -107,20 +101,10 @@ html, body {
 }
 
 #settings{
-	border-bottom: 2px grey solid;
+	border-top: 2px grey solid;
 }
 
 #line{
 	font-size: 2em;
 }
-/** End - Text Box **/
 
-#footer {
-  height: 50px;
-  padding-top: 2px;
-  margin-top: -50px;
-  text-align: center;
-  background-color: #004080;
-  color: white;
-  border: 2px solid #004080;
-}
