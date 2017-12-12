@@ -13,8 +13,9 @@ This report will assess and analyse the benefits and drawbacks of the current ex
 # How to Run speech to text on a vm 
 1. git clone https://github.com/Hydrangea028/Web-Research-Sprint-1.git
 2. cd Web-Research-Sprint-1
-3. node server
-4. go to localhost:8080
+3. npm install
+4. node server
+5. go to localhost:8080
 
 # Extra Information
 - Please ensure express is installed, using npm install express
