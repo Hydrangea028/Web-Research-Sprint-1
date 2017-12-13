@@ -10,7 +10,8 @@ However, with new advances in machine learning technology, it is possible for ma
 This report will assess and analyse the benefits and drawbacks of the current existing software or systems for Real Time speech captioning. This report also attempts to adapt accessible educational multimedia through the use of machine learning technologies for disabled students within the United Kingdom and elsewhere.
 
 
-# How to Run speech to text on a vm 
+# How to Run speech-to-text on a virtual machine
+Please follow the steps below:
 1. git clone https://github.com/Hydrangea028/Web-Research-Sprint-1.git
 2. cd Web-Research-Sprint-1
 3. npm install
@@ -18,7 +19,7 @@ This report will assess and analyse the benefits and drawbacks of the current ex
 5. go to localhost:8080
 
 # Extra Information
-- Please ensure express is installed, using npm install express
+- To ensure that express is installed, use npm install express
 - npm install to ensure all packages are implemented to run this file
 - Before logging into your server, you will need to create a SSH tunnel from port 8080 that goes to localhost:8080, this can be achieved using putty. connect to your ip as usual and run the server through node.
 - On google chrome go to localhost:8080 
